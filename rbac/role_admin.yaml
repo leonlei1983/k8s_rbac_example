@@ -1,0 +1,23 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: example
+  name: admin-auth
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: example
+  name: admin-auth-bind
+subjects:
+- kind: User
+  name: employee00
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: admin-auth
+  apiGroup: ""
